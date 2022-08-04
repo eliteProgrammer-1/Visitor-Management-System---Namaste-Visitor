@@ -1,3 +1,0 @@
-1. UML Case Diagram - https://lucid.app/lucidchart/a8194eb4-1dd8-4603-b5c0-596c6260f8f9/edit?viewport_loc=-114%2C116%2C1310%2C596%2C0_0&invitationId=inv_b4d4510e-bc9d-4969-8d8b-b294dba5623d#
-
-2. UML Class Diagram - https://lucid.app/lucidchart/f035b87b-b831-4d40-bb05-ca75bfabe8cb/edit?beaconFlowId=FC0ABD4F7D54BAB2&invitationId=inv_b56bb254-377a-498b-8e81-36bfa6d98e1a&page=HWEp-vi-RSFO#
