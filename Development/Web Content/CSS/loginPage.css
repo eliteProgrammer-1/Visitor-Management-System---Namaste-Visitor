@@ -27,8 +27,8 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 15px;
-    box-shadow: 3px 3px 15px 2px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 15px 0px;
     background-color: white;
 }
 
@@ -55,11 +55,10 @@ form h3 {
 
 .user_type {
     padding: 0;
-    /* font-weight: 520;     */
 }
 
 .btn {
-    background-color:rgb(234, 167, 42);
+    background-color: rgb(234, 167, 42);
     border-radius: 100px;
     color: white;
     cursor: pointer;
