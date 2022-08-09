@@ -2,8 +2,11 @@ package login;
 
 import java.io.*;
 import java.sql.*;
+
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+@WebServlet("/HTML/login-verification")
 public class User extends HttpServlet
 {
     private String emp_id, password;
@@ -71,7 +74,7 @@ public class User extends HttpServlet
         }
         catch(Exception e)
         {
-
+        	
         }
         return false;
     }

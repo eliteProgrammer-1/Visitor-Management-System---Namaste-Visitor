@@ -36,7 +36,7 @@
         <div id="user-name">
             <%out.println(session.getAttribute("emp_id"));%>
         </div>
-            <form action="" method="post">
+            <form action="choices" method="post">
                 <select name="chooseOption" id="chooseOption">
                     <option value="create">Create Entry</option>
                     <option value="view">View Entries</option>
