@@ -26,7 +26,7 @@
                 <span id="logo">In Time Tec</span>
                 <ul>
                     <!-- <li><a href="#"></a></li> -->
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="/Development/Logout">Logout</a></li>
                 </ul>
             </div>
         </nav>
