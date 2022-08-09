@@ -35,9 +35,12 @@ public class User extends HttpServlet
     }
     
     
-    public void redirectAccordingToUserType()
-    {
-    	
+    public void redirectAccordingToUserType(HttpServletRequest req, HttpServletResponse resp) throws IOException
+    {	
+    	if(this.isSecurityPersonnel == true)
+        {	
+            resp.sendRedirect(req.getContextPath() + "/JSP_Files/security.jsp");
+        }
     }
     
     
@@ -84,8 +87,10 @@ public class User extends HttpServlet
         if(isAuthenticated(this.emp_id, this.password) == true)
         {	
         	HttpSession session = req.getSession();
-        	session.setAttribute("loggedIn", "true");
-        	redirectAccordingToUserType();
+        	session.setAttribute("loggedIn", true);
+        	session.setAttribute("emp_id", emp_id);
+        	
+        	redirectAccordingToUserType(req, resp);
         }
         else
         {
