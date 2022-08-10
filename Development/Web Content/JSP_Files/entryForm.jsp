@@ -36,7 +36,7 @@
 
         <div class="container">
             <div id="center-div">
-                <form action="" method="post">
+                <form action="/Development/JSP_Files/mobOTPForm.jsp" method="post">
                     <div id="form-inside">
                         <div id="left-div">
                             <input type="text" placeholder="First Name" name="firstName" class="inp">

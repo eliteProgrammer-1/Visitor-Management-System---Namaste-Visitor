@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class ConnectionDB 
 {
@@ -31,5 +32,20 @@ public class ConnectionDB
         	e.printStackTrace();
         }
 		return null; // if something happened wrong resultset will be not initialized
+	}
+	
+	public static void insertQuery(String query)
+	{
+		try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(databaseURL, databaseUserName, databasePassword);
+            Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        }
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
