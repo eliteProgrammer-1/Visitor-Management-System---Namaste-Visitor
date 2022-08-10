@@ -27,7 +27,6 @@
                     <img src="../Images/logo.png" alt="" height="65%">
                     <span id="logo">In Time Tec</span>
                     <ul>
-                        <!-- <li><a href="#"></a></li> -->
                         <li><a href="/Development/JSP_Files/security.jsp">Options</a></li>
                         <li><a href="/Development/Logout">Logout</a></li>
                     </ul>
