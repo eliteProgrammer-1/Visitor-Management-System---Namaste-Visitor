@@ -2,20 +2,57 @@
     pageEncoding="ISO-8859-1"%>
     
     <%@ page import="Verification.*" %>
-    
-    <%	
+    <%@ page import="security.*" %>
+	   
+    <%response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");%> <%-- Tells browser to not store this page on cache --%>
+	<%response.setHeader("Pragma", "no-cache");%> <%-- Tells browser to not store this page on cache, for older versions of http --%>
+
+	
+	<%if(session.getAttribute("loggedIn") == null)
+	{
+		response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
+	}
+	%>
+	
+	<%	
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String aadharNum = request.getParameter("aadharNum");
+		String purpose = request.getParameter("purpose");
     	String mobNum = request.getParameter("mobNum");
-    	System.out.println(SendOTPOnMobile.sendOTP(mobNum));
+		String mssg = "Your OTP for Namaste Visitor - In Time Tec : ";
+    %>
+   
+    
+	<%
+		int apiStatusCode = SendOTPOnMobile.sendOTP(mobNum, mssg);
+		
+	%>
+
+	<%	
+		VisitorData data = new VisitorData(firstName, lastName, mobNum, aadharNum, purpose);
+		session.setAttribute("visitorData", data);
     %>
     
+    
+    
+
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>OTP</title>
+<link rel="stylesheet" href="../CSS/loginPage.css">
+<link rel="stylesheet" href="../CSS/navBar.css">
 </head>
 <body>
-	
+	<jsp:include page="../HTML/logoutNavSecurity.html"/>
+	<div class="container">
+		<form action="/Development/verifyOTP" method="post">
+			<input type="text" placeholder="Enter OTP" class="inp" name="OTP">
+			<button type="submit" class="btn">Enter</button>
+		</form>
+	</div>
 </body>
 </html>

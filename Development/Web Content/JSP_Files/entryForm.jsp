@@ -21,19 +21,7 @@
     </head>
 
     <body>
-        <header>
-            <nav id="navBar">
-                <div id="navDiv">
-                    <img src="../Images/logo.png" alt="" height="65%">
-                    <span id="logo">In Time Tec</span>
-                    <ul>
-                        <li><a href="/Development/JSP_Files/security.jsp">Options</a></li>
-                        <li><a href="/Development/Logout">Logout</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
+        <jsp:include page="../HTML/logoutNavSecurity.html"/>
         <div class="container">
             <div id="center-div">
                 <form action="/Development/JSP_Files/mobOTPForm.jsp" method="post">
@@ -45,7 +33,7 @@
 
                         <div id="right-div">
                             <input type="text" placeholder="Last Name" name="lastName" class="inp">
-                            <input type="text" placeholder="Aadhar Card Number" name="AadharNum" class="inp">
+                            <input type="text" placeholder="Aadhar Card Number" name="aadharNum" class="inp">
                         </div>
                     </div>
                     <div id="bottom-div">

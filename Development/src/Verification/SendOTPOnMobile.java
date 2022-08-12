@@ -9,7 +9,7 @@ import database.*;
 
 public class SendOTPOnMobile 
 {
-	public static String generateOTP()
+	private static String generateOTP()
 	{
 		String characters = "0123456789";
 		Random random = new Random();
@@ -23,7 +23,7 @@ public class SendOTPOnMobile
 		return OTP;
 	}
 
-	public static boolean is_OTP_unique(String OTP) throws SQLException
+	private static boolean is_OTP_unique(String OTP) throws SQLException
 	{
 		String query = "select * from otp where otp=?;";
 		String queryConditionVars[] = new String[1];
@@ -37,21 +37,17 @@ public class SendOTPOnMobile
 		return false;
 	}
 
-	public static int sendOTP(String mobNum) throws SQLException, IOException
+	public static int sendOTP(String mobNum, String mssg) throws SQLException, IOException
 	{	
-		System.out.println("Ram");
 		String OTP = generateOTP();
-		
-		System.out.println(OTP);
-		
 		while(is_OTP_unique(OTP) == false)
 		{
 			OTP = generateOTP();
 		}
+		mssg += OTP;
 
 		String apiKey = "8BxRPsXkcrazntuSIE9piQHYO2bUhT6lFgJV1D5CL7mGN0foAw0JbokNMWeL2TqFYtzuGlARH3XvndxE";
-
-		String url = "https://www.fast2sms.com/dev/bulkV2?authorization="+ apiKey + "&variables_values=" + OTP + "&route=otp&numbers=" + mobNum;
+		String url = "https://www.fast2sms.com/dev/bulkV2?authorization=" + apiKey + "&message=" + mssg + "&language=english&route=q&numbers=" + mobNum;
 
 		try 
 		{
@@ -62,8 +58,7 @@ public class SendOTPOnMobile
 			connection.setRequestProperty("cache-control", "no-cache");
 
 			int respCode = connection.getResponseCode();
-			System.out.println(respCode);
-			ConnectionDB.insertQuery("insert into otp values(" + OTP + ", " + mobNum + ", null);");
+			ConnectionDB.executeQuery("insert into otp values(" + OTP + ", " + mobNum + ", null);");
 			return respCode;
 		} 
 		catch (MalformedURLException e) 

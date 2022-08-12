@@ -1,10 +1,6 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ConnectionDB 
 {
@@ -12,18 +8,31 @@ public class ConnectionDB
 	private static String databaseUserName = "root";
 	private static String databasePassword = "1234";
 	
+
+    public static Connection makeConnection() throws ClassNotFoundException, SQLException
+    {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection connection = DriverManager.getConnection(databaseURL, databaseUserName, databasePassword);
+        return connection;
+    }
+
 	public static ResultSet getResult(String query, String[] queryConditionVars)
 	{
 		try
         {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(databaseURL, databaseUserName, databasePassword);
+//             Class.forName("com.mysql.jdbc.Driver");
+//             Connection connection = DriverManager.getConnection(databaseURL, databaseUserName, databasePassword);
+            Connection connection = makeConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             
-            for(int i = 0; i < queryConditionVars.length; i++)
+            if(queryConditionVars != null) // if query have variables, otherwise I pass null
             {
-            	 preparedStatement.setString(i + 1, queryConditionVars[i]);
+            	for(int i = 0; i < queryConditionVars.length; i++)
+                {
+                	preparedStatement.setString(i + 1, queryConditionVars[i]);
+                }
             }
+            
             ResultSet resultSet = preparedStatement.executeQuery();
             return resultSet;
         }
@@ -34,12 +43,11 @@ public class ConnectionDB
 		return null; // if something happened wrong resultset will be not initialized
 	}
 	
-	public static void insertQuery(String query)
-	{
+	public static void executeQuery(String query)
+	{	
 		try
         {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(databaseURL, databaseUserName, databasePassword);
+            Connection connection = makeConnection();
             Statement stmt = connection.createStatement();
             stmt.execute(query);
         }
@@ -47,5 +55,5 @@ public class ConnectionDB
 		{
 			e.printStackTrace();
 		}
-	}
+	}	
 }
