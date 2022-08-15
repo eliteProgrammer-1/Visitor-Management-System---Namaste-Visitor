@@ -53,7 +53,7 @@ public class SecurityFunctionality extends HttpServlet
         }
         else if(this.viewEntry == true)
         {
-
+            resp.sendRedirect(req.getContextPath() + "/showEntries_1");
         }
         else if(this.invite == true)
         {

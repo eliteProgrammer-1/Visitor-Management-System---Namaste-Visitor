@@ -20,8 +20,6 @@ public class ConnectionDB
 	{
 		try
         {
-//             Class.forName("com.mysql.jdbc.Driver");
-//             Connection connection = DriverManager.getConnection(databaseURL, databaseUserName, databasePassword);
             Connection connection = makeConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             
@@ -55,5 +53,22 @@ public class ConnectionDB
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public static ResultSet executeQueryResultSet(String query)
+	{	
+		try
+        {
+            Connection connection = makeConnection();
+            Statement stmt = connection.createStatement();
+            ResultSet resultset = stmt.executeQuery(query);
+            return resultset;
+        }
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}	
 }
