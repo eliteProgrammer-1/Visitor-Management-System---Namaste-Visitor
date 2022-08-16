@@ -155,12 +155,12 @@ public class DataLimit extends HttpServlet
 		}
 		else
 		{
-			query = "select * from entries;";
+			query = "select * from entries order by entry_time desc;";
 		}
 		
 		if(query == null)
 		{
-			query = "select * from entries where entry_time >= " + "'" + date + "'" + ";";
+			query = "select * from entries where entry_time >= " + "'" + date + "'" + " order by entry_time desc;";
 		}
 		
 		resultset = ConnectionDB.executeQueryResultSet(query);

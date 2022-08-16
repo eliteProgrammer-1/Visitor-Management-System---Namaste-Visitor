@@ -104,8 +104,8 @@
             <div class="lowerBox">
                 <div id="sortingBox">
                     <select name="" id="sortData">
-                        <option value="">Newest First</option>
-                        <option value="">Oldest First</option>
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
                     </select>
                 </div>
                 <div class="tableBox">
@@ -123,7 +123,7 @@
                                 <th scope="col">Exit</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tableBody">
         
                             <%	
                                 ResultSet resultset = (ResultSet)session.getAttribute("entries");
@@ -185,8 +185,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
-        <script src="../JavaScript/showData.js"></script>
+        <script src="../JavaScript/showDataSearchOption.js"></script>
         <script src="../JavaScript/showDataEditExitForm.js"></script>
+        <script src="../JavaScript/showDataSorting.js"></script>
     </body>
 
     </html>
