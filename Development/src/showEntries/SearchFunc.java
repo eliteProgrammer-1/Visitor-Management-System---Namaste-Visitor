@@ -23,19 +23,19 @@ public class SearchFunc extends HttpServlet
 		
 		if(searchType.equals("visitingID") == true)
 		{
-			query = "select * from entries where visiting_ID = " + "'" + inpWord + "';";
+			query = "select * from entries where visiting_ID = " + "'" + inpWord + "' order by entry_time desc;";
 		}
 		else if(searchType.equals("name") == true)
 		{			
-			query = "select * from " + "(select *,  " + "CONCAT(first_name , ' ' , last_name)" + " as full_name from entries) tb where full_name like " + "'" + inpWord + "%';";
+			query = "select * from " + "(select *,  " + "CONCAT(first_name , ' ' , last_name)" + " as full_name from entries) tb where full_name like " + "'" + inpWord + "%' order by entry_time desc;";
 		}
 		else if(searchType.equals("mobNum") == true)
 		{
-			query = "select * from entries where mob_num = " + "'" + inpWord + "';";
+			query = "select * from entries where mob_num = " + "'" + inpWord + "' order by entry_time desc;";
 		}
 		else if(searchType.equals("aadharNum") == true)
 		{
-			query = "select * from entries where aadhar_num = " + "'" + inpWord + "';";
+			query = "select * from entries where aadhar_num = " + "'" + inpWord + "' order by entry_time desc;";
 		}
 		
 		return ConnectionDB.executeQueryResultSet(query);
