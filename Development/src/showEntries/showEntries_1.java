@@ -56,7 +56,7 @@ public class showEntries_1 extends HttpServlet
 		
 		HttpSession session = req.getSession();
 		String date = getPreviousMonthDate();
-		String query = "select * from entries where entry_time >= " + "'" + date + "'" + ";";
+		String query = "select * from entries where entry_time >= " + "'" + date + "'" + "order by entry_time desc;";
 		
 		ResultSet resultset = ConnectionDB.executeQueryResultSet(query);
 		session.setAttribute("entries", resultset);

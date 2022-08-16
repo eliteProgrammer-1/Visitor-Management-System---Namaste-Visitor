@@ -94,7 +94,7 @@
                     </div>
                 </form>
 
-                <form action="" id="searchViaDate">
+                <form action="/Development/SearchFuncViaDate" id="searchViaDate" method="post">
                     <input type="date" name="startDate" id="" class="inp" style="margin-right: 12px">
                     <input type="date" name="endData" id="" class="inp" style="margin-right: 12px">
                     <button type="submit" class="btn-small">Search</button>
