@@ -78,7 +78,7 @@
                     <input label="Search via Date" type="radio" id="" name="searchOption" value="date-time">
                 </div>
 
-                <form action="" method="post" id="searchViaOtherAttributes">
+                <form action="/Development/SearchFunc" method="post" id="searchViaOtherAttributes">
                     <div id="searchViaOtherAttributesInp">
                         <select name="searchBy" class="inp">
                             <option value="visitingID">Visiting ID</option>
