@@ -61,11 +61,28 @@ function sortData(sortingType)
     {
         tableContent.sort((obj1, obj2)=>
         {	
+            if(obj2.exitDate != "null" && obj1.exitDate != "null")
+            {
+                return new Date(obj2.entryDate) - new Date(obj1.entryDate);
+            }
 			if(obj2.exitDate == "null")
+			{
+				return 1;
+			}
+			if(obj1.exitDate == "null")
 			{
 				return -1;
 			}
-            return new Date(obj2.entryDate) - new Date(obj1.entryDate);
+            
+        });
+        
+        tableContent.sort((obj1, obj2)=>
+        {	
+            if(obj2.exitDate == "null" && obj1.exitDate == "null")
+            {
+                return new Date(obj2.entryDate) - new Date(obj1.entryDate);
+            }
+			return 0;
         });
     }
     return tableContent;
@@ -99,4 +116,8 @@ sortOption.addEventListener("change", ()=>
 
     const tableContent = sortData(sortOptionVal);
     setTableHTML(tableContent);
+
+    // when data is rearranged, HTML is again added to table body so eventListner on new buttons is not added
+    addEventListenerToExitTimeBtns();
+    addEventListnerToEditBtns(); 
 });

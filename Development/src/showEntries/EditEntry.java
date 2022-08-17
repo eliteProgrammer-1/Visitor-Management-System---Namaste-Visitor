@@ -1,9 +1,6 @@
 package showEntries;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import database.*; // self made package
-import security.MakeEntry;
 
-@WebServlet("/ExitTime")
-public class ExitTime extends HttpServlet {
-	
+
+@WebServlet("/EditEntry")
+public class EditEntry extends HttpServlet 
+{
 	private void ifNotAuthenticated(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {	
     	resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // tells browser to not store in cache
@@ -29,24 +26,24 @@ public class ExitTime extends HttpServlet {
     	}
     }
 	
-	private void setExitTime(String visitingID)
+	private void editEntry(String visitingID, String fName, String lName, String aadharNum, String purpose)
 	{
-		Date date = new Date();
-		SimpleDateFormat ft =  new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
-        String exitTime = ft.format(date);
-        
-        System.out.println(visitingID + " " + exitTime);
-        
-        String query = "update entries set exit_time = " + "'" + exitTime + "'" + "where visiting_ID = " + "'" + visitingID + "';";
-        ConnectionDB.executeQuery(query);
+		String query = "update entries set first_name = " + "'" + fName + "'" + ", last_name = " + "'" + lName + "'" + ", aadhar_num = " + "'" + aadharNum + "'" + ", purpose = " + "'" + purpose + "'" + "where visiting_ID = " + "'" + visitingID + "';";
+		
+		ConnectionDB.executeQuery(query);
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
-	{	
+	{
 		ifNotAuthenticated(req, resp);
 		
 		String visitingID = req.getParameter("visitingID");
-		setExitTime(visitingID);
+		String fName = req.getParameter("firstName");
+		String lName = req.getParameter("lastName");
+		String aadharNum = req.getParameter("aadharNum");
+		String purpose = req.getParameter("purpose");
+		editEntry(visitingID, fName, lName, aadharNum, purpose);
+		
 		resp.sendRedirect(req.getContextPath() + "/showEntries_1");
 	}
 

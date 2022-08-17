@@ -53,16 +53,17 @@
                 <button type="submit" class="btn">Exit</button>
             </form>
 
-            <form action="" method="post" id="editForm">
+            <form action="/Development/EditEntry" method="post" id="editForm">
+            <input name="visitingID" style="font-family: 'Montserrat', sans-serif; font-size:2rem; margin-bottom: 6rem; text-indent: 2.5rem; border: none;" class="inpt">
                 <div id="form-inside">
                     <div id="left-div">
-                        <input type="text" placeholder="First Name" name="firstName" class="inpt">
-                        <input type="text" placeholder="AadharNum" name="aadharNum" class="inpt">
+                        <input type="text" placeholder="First Name" name="firstName" class="inpt" id="editFormFirstName">
+                        <input type="text" placeholder="AadharNum" name="aadharNum" class="inpt" id="editFormAadharNum">
                     </div>
 
                     <div id="right-div">
-                        <input type="text" placeholder="Last Name" name="lastName" class="inpt">
-                        <input type="text" placeholder="Purpose" name="purpose" class="inpt">
+                        <input type="text" placeholder="Last Name" name="lastName" class="inpt" id="editFormLastName">
+                        <input type="text" placeholder="Purpose" name="purpose" class="inpt" id="editFormPurpose">
                     </div>
                 </div>
                 <button type="submit" class="btn">Edit</button>
@@ -106,7 +107,7 @@
                     <select name="" id="sortData">
                         <option value="newest">Newest First</option>
                         <option value="oldest">Oldest First</option>
-                        <option value="exited">Exited</option>
+                        <option value="activeEntries">Active Entries</option>
                     </select>
                 </div>
                 <div class="tableBox">
@@ -199,6 +200,7 @@
         <script src="../JavaScript/showDataSearchOption.js"></script>
         <script src="../JavaScript/showDataExitForm.js"></script>
         <script src="../JavaScript/showDataSorting.js"></script>
+        <script src="../JavaScript/showDataEditForm.js"></script>
     </body>
 
     </html>

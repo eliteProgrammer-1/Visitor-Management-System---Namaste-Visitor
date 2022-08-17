@@ -20,8 +20,8 @@
 }
 
 #editForm, #exitTimeForm{
-    height: 60%;
-    width: 60%;
+    height: 55%;
+    width: 48%;
     background-color: white;
     display: flex;
     flex-direction: column;
