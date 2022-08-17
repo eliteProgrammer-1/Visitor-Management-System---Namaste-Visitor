@@ -8,6 +8,13 @@
 	{
 		response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
 	}
+%>
+
+
+<%if(session.getAttribute("visitorData") != null)
+	{
+		session.removeAttribute("visitorData"); // if user redirects itself from otp page to options page
+	}
 %> 
  
 <!DOCTYPE html>

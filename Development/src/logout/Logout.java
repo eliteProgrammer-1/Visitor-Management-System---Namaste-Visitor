@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 public class Logout extends HttpServlet 
 {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
-	{
+	{	
 		HttpSession session = req.getSession();
 		session.removeAttribute("loggedIn");
 		session.invalidate();
