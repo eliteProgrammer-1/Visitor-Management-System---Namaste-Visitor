@@ -37,21 +37,21 @@
         <jsp:include page="../HTML/logoutNavSecurity.html" />
 
         <div id="formBox">
-            <!-- <form action="" method="post" id="exitTimeForm">
-                <h4 name="visitingID" style="font-family: 'Montserrat', sans-serif; margin-bottom: 2rem;">#432</h3>
+            <form action="/Development/ExitTime" method="post" id="exitTimeForm">
+                <input name="visitingID" style="font-family: 'Montserrat', sans-serif; font-size:2rem; margin-bottom: 6rem; text-indent: 2.5rem; border: none;" class="inpt">
                 <div id="form-inside">
                     <div id="left-div">
-                        <input type="text" placeholder="First Name" id="firstName" class="inpt">
-                        <input type="text" placeholder="Mobile Number" id="mobNum" class="inpt">
+                        <input type="text" placeholder="First Name" id="firstNameExitForm" class="inpt">
+                        <input type="text" placeholder="Mobile Number" id="mobNumExitForm" class="inpt">
                     </div>
 
                     <div id="right-div">
-                        <input type="text" placeholder="Last Name" id="lastName" class="inpt">
-                        <input type="text" placeholder="Aadhar Card Number" id="aadharNum" class="inpt">
+                        <input type="text" placeholder="Last Name" id="lastNameExitForm" class="inpt">
+                        <input type="text" placeholder="Aadhar Card Number" id="aadharNumExitForm" class="inpt">
                     </div>
                 </div>
                 <button type="submit" class="btn">Exit</button>
-            </form> -->
+            </form>
 
             <form action="" method="post" id="editForm">
                 <div id="form-inside">
@@ -153,7 +153,7 @@
                                 		out.println("<td>" + exitTime + "</td>");
                                 		
                                 		out.println("<td><button type='button' class='btn-small editBtn'>Edit</button></td>");
-                                		out.println("<td><button type='button' class='btn-small'>Exit</button></td>");
+                                		out.println("<td><button type='button' class='btn-small exitTimeBtns'>Exit</button></td>");
                                 		
                                 		out.println("</tr>");
                                 	}
@@ -186,7 +186,7 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
         <script src="../JavaScript/showDataSearchOption.js"></script>
-        <script src="../JavaScript/showDataEditExitForm.js"></script>
+        <script src="../JavaScript/showDataExitForm.js"></script>
         <script src="../JavaScript/showDataSorting.js"></script>
     </body>
 
