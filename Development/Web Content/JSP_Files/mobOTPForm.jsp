@@ -25,7 +25,7 @@
    
     
 	<%
-		//int apiStatusCode = SendOTPOnMobile.sendOTP(mobNum, mssg);
+		int apiStatusCode = SendOTPOnMobile.sendOTP(mobNum, mssg);
 		
 	%>
 
