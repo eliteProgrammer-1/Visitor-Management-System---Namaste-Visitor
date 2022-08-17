@@ -1,12 +1,7 @@
 const sortOption = document.getElementById("sortData");
 
 const tableBody = document.getElementById("tableBody");
-
-
-// console.log(tableBody);
-// console.log(((tableBody.children)[0].children)[2]);
-
-// console.log((((tableBody.children)[0].children)[7]).innerText); 
+ 
 
 function getTableContent() 
 {
@@ -24,6 +19,8 @@ function getTableContent()
         const purpose = (tableRow.children)[6].innerText;
         const entryDate = (tableRow.children)[7].innerText;
         const exitDate = (tableRow.children)[8].innerText;
+        const editBtn = (tableRow.children)[9].innerHTML;
+        const exitBtn = (tableRow.children)[10].innerHTML;
 
         const rowObj = {
             visitingID: visitingID,
@@ -33,7 +30,9 @@ function getTableContent()
             aadharNum: aadharNum, 
             purpose: purpose,
             entryDate: entryDate, 
-            exitDate: exitDate       
+            exitDate: exitDate, 
+            editBtn : editBtn, 
+            exitBtn: exitBtn       
         };
 
         tableContent.push(rowObj);
@@ -51,11 +50,22 @@ function sortData(sortingType)
             return new Date(obj2.entryDate) - new Date(obj1.entryDate);
         });
     }
-    else
+    else if(sortingType == "oldest")
     {   
         tableContent.sort((obj1, obj2)=>
         {
             return new Date(obj1.entryDate) - new Date(obj2.entryDate)
+        });
+    }
+    else
+    {
+        tableContent.sort((obj1, obj2)=>
+        {	
+			if(obj2.exitDate == "null")
+			{
+				return -1;
+			}
+            return new Date(obj2.entryDate) - new Date(obj1.entryDate);
         });
     }
     return tableContent;
@@ -76,8 +86,8 @@ function setTableHTML(tableContent)
         <td>${tableContent[i].purpose}</td>
         <td>${tableContent[i].entryDate}</td>
         <td>${tableContent[i].exitDate}</td>
-        <td><button type='button' class='btn-small editBtn'>Edit</button></td>
-        <td><button type='button' class='btn-small'>Exit</button></td>`
+        <td>${tableContent[i].editBtn}</td>
+        <td>${tableContent[i].exitBtn}</td>`
     }
     
     tableBody.innerHTML = tableBodyHTML;

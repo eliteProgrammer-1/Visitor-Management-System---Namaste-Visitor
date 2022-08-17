@@ -106,6 +106,7 @@
                     <select name="" id="sortData">
                         <option value="newest">Newest First</option>
                         <option value="oldest">Oldest First</option>
+                        <option value="exited">Exited</option>
                     </select>
                 </div>
                 <div class="tableBox">
@@ -152,8 +153,18 @@
                                 		out.println("<td>" + entryTime + "</td>");
                                 		out.println("<td>" + exitTime + "</td>");
                                 		
-                                		out.println("<td><button type='button' class='btn-small editBtn'>Edit</button></td>");
-                                		out.println("<td><button type='button' class='btn-small exitTimeBtns'>Exit</button></td>");
+                                		if(exitTime != null)
+                                		{	
+                                			// not able to edit and change time
+                                			out.println("<td><button type='button' class='btn-disabled'>Edit</button></td>"); // removed editBtns class
+                                    		out.println("<td><button type='button' class='btn-disabled'>Exit</button></td>"); // removed exitTimeBtns class
+                                		}
+                                		else
+                                		{
+                                			out.println("<td><button type='button' class='btn-small editBtns'>Edit</button></td>");
+                                    		out.println("<td><button type='button' class='btn-small exitTimeBtns'>Exit</button></td>");
+                                		}
+                                		
                                 		
                                 		out.println("</tr>");
                                 	}

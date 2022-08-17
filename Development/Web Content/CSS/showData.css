@@ -166,3 +166,33 @@
     color: black;
     background-color: rgb(234, 167, 42);
 }
+
+
+/* disabled buttons  */
+.btn-disabled {
+	background-color: rgb(146, 142, 134);
+    border-radius: 100px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 13px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.btn-disabled:focus {
+	border: none;
+	outline: none;
+}
+
+.btn-disabled:active {
+	border: none;
+	outline: none;
+}

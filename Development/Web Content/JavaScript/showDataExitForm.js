@@ -3,6 +3,7 @@ const exitTimeForm = document.getElementById("exitTimeForm");
 const editForm = document.getElementById("editForm");
 
 const container = document.getElementById("container");
+console.log("included");
 
 const exitTimeBtns = document.getElementsByClassName("exitTimeBtns");
 
@@ -37,7 +38,7 @@ function setFormContent(e)
     lastName.value = rowChildren[3].innerText;
     mobNum.value = rowChildren[4].innerText;
     aadharNum.value = rowChildren[5].innerText;
-	
+	console.log(firstName);
 	 // value is not changable
 	exitTimeForm.children[0].setAttribute("readonly", "");
     firstName.setAttribute("readonly", "");
