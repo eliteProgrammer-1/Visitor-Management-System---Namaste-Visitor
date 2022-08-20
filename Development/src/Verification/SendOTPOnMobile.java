@@ -1,6 +1,7 @@
 package Verification;
 
 import java.io.IOException;
+
 import java.net.*;
 import java.sql.*;
 import java.util.Random;
@@ -9,7 +10,7 @@ import database.*;
 
 public class SendOTPOnMobile 
 {
-	private static String generateOTP()
+	public static String generateOTP()
 	{
 		String characters = "0123456789";
 		Random random = new Random();
@@ -23,7 +24,7 @@ public class SendOTPOnMobile
 		return OTP;
 	}
 
-	private static boolean is_OTP_unique(String OTP) throws SQLException
+	public static boolean is_OTP_unique(String OTP) throws SQLException
 	{
 		String query = "select * from otp where otp=?;";
 		String queryConditionVars[] = new String[1];
@@ -58,7 +59,11 @@ public class SendOTPOnMobile
 			connection.setRequestProperty("cache-control", "no-cache");
 
 			int respCode = connection.getResponseCode();
-			ConnectionDB.executeQuery("insert into otp values(" + OTP + ", " + mobNum + ", null);");
+			if(respCode == 200)
+			{
+				ConnectionDB.executeQuery("insert into otp values(" + OTP + ", " + mobNum + ", null);");
+			}
+			
 			return respCode;
 		} 
 		catch (MalformedURLException e) 

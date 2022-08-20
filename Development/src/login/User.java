@@ -38,6 +38,10 @@ public class User extends HttpServlet
         {	
             resp.sendRedirect(req.getContextPath() + "/JSP_Files/security.jsp");
         }
+		else if(LocalConstants.isHR == true)
+		{
+			resp.sendRedirect(req.getContextPath() + "/JSP_Files/hr.jsp");
+		}
     }
     
     

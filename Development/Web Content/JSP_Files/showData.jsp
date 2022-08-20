@@ -13,7 +13,7 @@
 
 
 <%
-	if(session.getAttribute("entries") == null) // when page is refreshed
+	if(session.getAttribute("entries") == null) // when page is refreshed then entries object will become null and no entries is printed
 	{
 		response.sendRedirect(request.getContextPath() + "/showEntries_1");
 	}

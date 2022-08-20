@@ -10,15 +10,6 @@
 		response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
 	}
 	%>
-	
-   <%
-	  if(session.getAttribute("visitorData") == null)
-	  {
-		  response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
-	  }
-   %>
-	
-	<%session.removeAttribute("visitorData"); %>
 
 
 <!DOCTYPE html>
@@ -97,8 +88,8 @@
 	<jsp:include page="../HTML/logoutNavSecurity.html"/>
 	<div class="container">
         <div class="inner-box">
-            <div style="margin-bottom: 3rem; font-size: 20px">Entry Created Successfully!</div> 
-            <a href="/Development/JSP_Files/security.jsp"><button class="btn-small">Ok</button></a>
+            <div style="margin-bottom: 3rem; font-size: 20px">Email Sent Successfully!</div> 
+            <a href="/Development/JSP_Files/newJoineeForm.jsp"><button class="btn-small">Ok</button></a>
         </div>
 	</div>
 </body>

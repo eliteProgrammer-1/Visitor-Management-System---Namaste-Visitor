@@ -25,7 +25,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Successfully Created</title>
+<title>Error</title>
 <link rel="stylesheet" href="../CSS/navBar.css">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
@@ -55,8 +55,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border-radius: 6px;
-        box-shadow: 3px 3px 15px 0px;
+        border-radius: 8px;
     }
 
     .btn-small {
@@ -97,7 +96,7 @@
 	<jsp:include page="../HTML/logoutNavSecurity.html"/>
 	<div class="container">
         <div class="inner-box">
-            <div style="margin-bottom: 3rem; font-size: 20px">Entry Created Successfully!</div> 
+            <div style="margin-bottom: 3rem; font-size: 25px; color: rgb(255, 0, 0); font-weight: bolder;">Something Went Wrong!</div> 
             <a href="/Development/JSP_Files/security.jsp"><button class="btn-small">Ok</button></a>
         </div>
 	</div>

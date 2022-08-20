@@ -6,11 +6,20 @@
 }
 
 
+body {
+	/* added newly */
+	
+	
+	background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #fbc531 100%);
+}
+
 .container {
     background-color: #FBAB7E;
     background-image: linear-gradient(62deg, #FBAB7E 0%, #fbc531 100%);
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: cadetblue;
@@ -30,6 +39,9 @@ form {
     border-radius: 6px;
     box-shadow: 2px 2px 15px 0px;
     background-color: white;
+    
+    
+    box-sizing: border-box; /* added newly */
 }
 
 form h3 {
