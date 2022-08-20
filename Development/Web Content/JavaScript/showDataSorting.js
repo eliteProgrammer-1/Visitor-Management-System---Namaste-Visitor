@@ -18,9 +18,14 @@ function getTableContent()
         const aadharNum = (tableRow.children)[5].innerText;
         const purpose = (tableRow.children)[6].innerText;
         const entryDate = (tableRow.children)[7].innerText;
-        const exitDate = (tableRow.children)[8].innerText;
+        let exitDate = (tableRow.children)[8].innerText;
         const editBtn = (tableRow.children)[9].innerHTML;
         const exitBtn = (tableRow.children)[10].innerHTML;
+
+        if(exitDate == "-----") // beacause I made changes on backend that null will become -----
+        {
+            exitDate = "null";
+        }
 
         const rowObj = {
             visitingID: visitingID,
@@ -92,7 +97,12 @@ function setTableHTML(tableContent)
 {   
     let tableBodyHTML = "";
     for(let i = 0; i < tableContent.length; i++)
-    {
+    {   
+        if(tableContent[i].exitDate == "null")
+        {
+            tableContent[i].exitDate = "-----"; // I have print -----
+        }
+
         tableBodyHTML += `<tr>
         <th scope='row'>${i + 1}</th>
         <td>${tableContent[i].visitingID}</td>

@@ -23,6 +23,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import Verification.SendOTPOnMobile; // self made class
 import database.*; // self made package
+import security.MakeEntry; // self made
 
 @WebServlet("/SendEmail")
 public class SendEmail extends HttpServlet 
@@ -66,16 +67,19 @@ public class SendEmail extends HttpServlet
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		String fromEmail = "sharmamanish16111999@gmail.com";
+		
 		String toEmail = req.getParameter("email");
-		String name = req.getParameter("firstName") + " " + req.getParameter("lastName");
-		String subject = "Namaste " + name + "!";
-			
-		String OTP = SendOTPOnMobile.generateOTP();
+		String visitingID = MakeEntry.randomString();
+		String firstName = req.getParameter("firstName");
+		String lastName = req.getParameter("lastName");
+		String mobNum = req.getParameter("mobNum");
+		String aadharNum = req.getParameter("aadharNum");
+		
 		try 
 		{
-			while(SendOTPOnMobile.is_OTP_unique(OTP) == false)
+			while(MakeEntry.is_visitingID_unique(visitingID) == false)
 			{
-				OTP = SendOTPOnMobile.generateOTP();
+				visitingID = MakeEntry.randomString();
 			}
 		} 
 		catch (SQLException e) 
@@ -83,12 +87,13 @@ public class SendEmail extends HttpServlet
 			e.printStackTrace();
 		}
 		
-		String mssg = "Hey " + name + "!\nYour OTP For Namaste Visitor : " + OTP;
+		String subject = "Namaste " + firstName + "!";
+		String mssg = "Hey " + firstName + "!\nYour Visiting ID For Namaste Visitor : " + visitingID + "\n";
 		sendEmail(subject, mssg, toEmail, fromEmail);
 		
-		String query = "insert into otp values(" + "'" + OTP + "', " + "null, " + "'" + toEmail + "'" + ");";
+		String query = "insert into entries (visiting_ID, first_name, last_name, mob_num, aadhar_num, purpose, entry_time, exit_time) values (" + "'" + visitingID + "', " + "'" + firstName + "', " + "'" + lastName + "' ," + "'" + mobNum + "', " + "'" + aadharNum + "', " + "'Joinee', " + "null, null);";		
 		ConnectionDB.executeQuery(query);
+		
 		resp.sendRedirect(req.getContextPath() + "/JSP_Files/emailSent.jsp");
 	}
-
 }

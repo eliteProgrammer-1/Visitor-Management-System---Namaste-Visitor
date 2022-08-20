@@ -15,7 +15,7 @@ public class MakeEntry
     private static String firstName, lastName, mobNum, aadharNum, purpose, timeData;
     private static String query, visitingID;
 
-    private static String randomString()
+    public static String randomString()
     {
     	String characters = "0123456789";
 		Random random = new Random();
@@ -29,11 +29,26 @@ public class MakeEntry
 		return new String(visitingID);
     }
     
-    private static boolean is_visitingID_unique() throws SQLException
+    public static boolean is_visitingID_unique() throws SQLException
     {   
         String query = "select visiting_ID from entries where visiting_ID=?;";
         String[] queryConditionVars = new String[1];
         queryConditionVars[0] = MakeEntry.visitingID;
+        ResultSet resultset = ConnectionDB.getResult(query, queryConditionVars);
+        
+        if(resultset.next() == false)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    
+    public static boolean is_visitingID_unique(String visitingID) throws SQLException
+    {   
+        String query = "select visiting_ID from entries where visiting_ID=?;";
+        String[] queryConditionVars = new String[1];
+        queryConditionVars[0] = visitingID;
         ResultSet resultset = ConnectionDB.getResult(query, queryConditionVars);
         
         if(resultset.next() == false)

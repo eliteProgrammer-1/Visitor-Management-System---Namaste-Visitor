@@ -35,8 +35,6 @@ public class ExitTime extends HttpServlet {
 		SimpleDateFormat ft =  new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
         String exitTime = ft.format(date);
         
-        System.out.println(visitingID + " " + exitTime);
-        
         String query = "update entries set exit_time = " + "'" + exitTime + "'" + "where visiting_ID = " + "'" + visitingID + "';";
         ConnectionDB.executeQuery(query);
 	}

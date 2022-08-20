@@ -66,7 +66,7 @@
                         <input type="text" placeholder="Purpose" name="purpose" class="inpt" id="editFormPurpose">
                     </div>
                 </div>
-                <button type="submit" class="btn">Edit</button>
+                <button type="submit" class="btn">Save</button>
             </form>
         </div>
 
@@ -142,6 +142,15 @@
                                 		String entryTime = resultset.getString("entry_time");
                                 		String exitTime = resultset.getString("exit_time");
                                 		
+                                		if(entryTime == null)
+                                		{
+                                			entryTime = "-----";
+                                		}
+                                		if(exitTime == null)
+                                		{
+                                			exitTime = "-----";
+                                		}
+                                		
                                 		out.println("<tr>");
                                 		
                                 		out.println("<th scope='row'>"+ i + "</th>");
@@ -154,7 +163,7 @@
                                 		out.println("<td>" + entryTime + "</td>");
                                 		out.println("<td>" + exitTime + "</td>");
                                 		
-                                		if(exitTime != null)
+                                		if(exitTime != "-----")
                                 		{	
                                 			// not able to edit and change time
                                 			out.println("<td><button type='button' class='btn-disabled'>Edit</button></td>"); // removed editBtns class

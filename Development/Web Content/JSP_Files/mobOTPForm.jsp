@@ -69,26 +69,33 @@
 <meta charset="ISO-8859-1">
 <title>OTP</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="../CSS/loginPage.css">
+<!-- <link rel="stylesheet" href="../CSS/loginPage.css"> -->
 <link rel="stylesheet" href="../CSS/navBar.css">
+<link rel="stylesheet" href="../CSS/otpForm.css">
 
 </head>
 <body>
 	<jsp:include page="../HTML/logoutNavSecurity.html"/>
-	<%
+	<div class="containerr">
+		<div id="titleDiv">
+			<h2>OTP</h2>
+		</div>
+		<form action="/Development/verifyOTP" method="post">
+			<%
 				if(hittingFirstTime == false)
 				{
-					out.println("<div class='alert alert-danger alert-dismissible fade show' role='alert' style='width: 100%; height: 12%;'><strong>Incorrect OTP! </strong> Please Enter Correct OTP.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+					out.println("<div class='alert alert-danger alert-dismissible fade show' role='alert' style='width: 100%; border-radius: 0;'><strong>Incorrect OTP! </strong> Please Enter Correct OTP.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 				}
 				else
 				{
-					out.println("<div class='alert alert-success alert-dismissible fade show' role='alert' style='width: 100%; height: 12%;'><strong>OTP Sent Successfully! </strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+					out.println("<div class='alert alert-success alert-dismissible fade show' role='alert' style='width: 100%; border-radius: 0;'><strong>OTP Sent Successfully! </strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 				}
 			%>
-	<div class="container">
-		<form action="/Development/verifyOTP" method="post">
-			<input type="text" placeholder="Enter OTP" class="inp" name="OTP" style='margin-top: 8rem;'>
-			<button type="submit" class="btn">Enter</button>
+			
+			<div id="inpDiv">
+				<input type="text" placeholder="Enter OTP" class="inp" name="OTP">
+				<button type="submit" class="btn">Enter</button>
+			</div>
 		</form>
 	</div>
 </body>
