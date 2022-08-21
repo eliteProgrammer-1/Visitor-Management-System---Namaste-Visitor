@@ -32,10 +32,37 @@
         <link rel="stylesheet" href="../CSS/showData_2.css">
         <link rel="stylesheet" href="../CSS/showData_3.css">
     </head>
-
     <body>
+    
+   <div class="modal fade" id="editEntryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	   <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        Saved Successfully!
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn-small" id="editModalBtn">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="exitEntryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	   <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        Exited Successfully!
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn-small" id="exitModalBtn">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+    	
+    
         <jsp:include page="../HTML/logoutNavSecurity.html" />
-
+        	
         <div id="formBox">
             <form action="/Development/ExitTime" method="post" id="exitTimeForm">
                 <input name="visitingID" style="font-family: 'Montserrat', sans-serif; font-size:2rem; margin-bottom: 6rem; text-indent: 2.5rem; border: none;" class="inpt">
@@ -71,7 +98,6 @@
         </div>
 
         <div class="containerr" id="container">
-
             <div class="upperBox">
                 <div class="radio">
                     <input label="Search via other Attributes" type="radio" id="" name="searchOption"
@@ -185,16 +211,23 @@
                     </table>
                 </div>
 
-                <form action="/Development/DataLimit" id="dataQuantityForm" method="post">
-                    <select name="dataQuantity" id="dataQuantitySelcTag">
-                        <option value="oneMonth">1 Month</option>
-                        <option value="threeMonths">3 Months</option>
-                        <option value="sixMonths">6 Months</option>
-                        <option value="oneYear">1 Year</option>
-                        <option value="all">All</option>
-                    </select>
-                    <button type="submit" style="margin-right: 1rem" class="btn-small">Get Entries</button>
-                </form>
+                <div id="dataQuantityAndResetDiv">
+
+                    <form action="/Development/showEntries_1" method="get" id="resetForm">
+                        <button type="submit" style="margin-right: 1rem" class="btn-small">Reset</button>
+                    </form>
+
+                    <form action="/Development/DataLimit" id="dataQuantityForm" method="post">
+                        <select name="dataQuantity" id="dataQuantitySelcTag">
+                            <option value="oneMonth">1 Month</option>
+                            <option value="threeMonths">3 Months</option>
+                            <option value="sixMonths">6 Months</option>
+                            <option value="oneYear">1 Year</option>
+                            <option value="all">All</option>
+                        </select>
+                        <button type="submit" style="margin-right: 1rem" class="btn-small">Get Entries</button>
+                    </form>
+                </div>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -210,6 +243,25 @@
         <script src="../JavaScript/showDataExitForm.js"></script>
         <script src="../JavaScript/showDataSorting.js"></script>
         <script src="../JavaScript/showDataEditForm.js"></script>
+        
+        <%if(session.getAttribute("editEntryModal") != null)
+        {	
+        	// attribute is created at editEntry.java and removed at ifAuth function of securityFunctinality.java
+        	// for showing modal of entry edited successfully
+        	out.print("<script src='../JavaScript/editModal.js'></script>");
+        	session.removeAttribute("editEntryModal");
+        }
+        %>
+        
+        <%if(session.getAttribute("exitEntryModal") != null)
+        {	
+        	// attribute is created at exitTime.java and removed at ifAuth function of securityFunctinality.java
+        	// for showing modal of visitor exited successfully
+        	out.print("<script src='../JavaScript/exitModal.js'></script>");
+        	session.removeAttribute("exitEntryModal");
+        }
+        %>
+        
     </body>
 
     </html>

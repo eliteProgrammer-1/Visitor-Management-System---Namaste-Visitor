@@ -19,6 +19,9 @@ public class SecurityFunctionality extends HttpServlet
     	
     	
     	HttpSession session = req.getSession();
+    	session.removeAttribute("exitEntryModal");
+    	session.removeAttribute("editEntryModal");
+    	
     	if(session.getAttribute("loggedIn") == null)
     	{
     		resp.sendRedirect(req.getContextPath() + "/HTML/loginPage.html");

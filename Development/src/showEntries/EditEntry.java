@@ -66,6 +66,7 @@ public class EditEntry extends HttpServlet
 		String lName = req.getParameter("lastName");
 		String aadharNum = req.getParameter("aadharNum");
 		String purpose = req.getParameter("purpose");
+		
 		editEntry(visitingID, fName, lName, aadharNum, purpose);
 		
 		try 
@@ -77,6 +78,8 @@ public class EditEntry extends HttpServlet
 			e.printStackTrace();
 		}
 		
+		HttpSession session = req.getSession();
+		session.setAttribute("editEntryModal", true); // this is added when no exception is throw and // for showing popup of success
 		resp.sendRedirect(req.getContextPath() + "/showEntries_1");
 	}
 

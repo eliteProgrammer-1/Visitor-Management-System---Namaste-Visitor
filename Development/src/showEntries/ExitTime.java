@@ -45,6 +45,9 @@ public class ExitTime extends HttpServlet {
 		
 		String visitingID = req.getParameter("visitingID");
 		setExitTime(visitingID);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("exitEntryModal", true); // this is added when no exception is throw and for showing popup of success
 		resp.sendRedirect(req.getContextPath() + "/showEntries_1");
 	}
 
