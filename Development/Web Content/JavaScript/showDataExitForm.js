@@ -3,7 +3,7 @@ const exitTimeForm = document.getElementById("exitTimeForm");
 const editForm = document.getElementById("editForm");
 
 const container = document.getElementById("container");
-
+const formTitle = document.getElementById("editExitFormTitle");
 
 const exitTimeBtns = document.getElementsByClassName("exitTimeBtns");
 
@@ -18,6 +18,7 @@ function updateCSS()
     formBox.style.display = "flex";
     exitTimeForm.style.display = "flex";
     container.style.display = "none";
+    formTitle.innerHTML = "<h2>Confirm Exit</h2>";
 }
 
 

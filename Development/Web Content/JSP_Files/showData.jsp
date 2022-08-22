@@ -64,6 +64,9 @@
         <jsp:include page="../HTML/logoutNavSecurity.html" />
         	
         <div id="formBox">
+            <div id="editExitFormTitle">
+                <h2></h2>
+            </div>
             <form action="/Development/ExitTime" method="post" id="exitTimeForm">
                 <input name="visitingID" style="font-family: 'Montserrat', sans-serif; font-size:2rem; margin-bottom: 6rem; text-indent: 2.5rem; border: none;" class="inpt">
                 <div id="form-inside">

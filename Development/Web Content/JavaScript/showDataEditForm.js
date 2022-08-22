@@ -18,6 +18,7 @@ function updateCSSEditForm()
     formBox.style.display = "flex";
     editForm.style.display = "flex";
     container.style.display = "none";
+    formTitle.innerHTML = "<h2>Confirm Changes</h2>"; // variable declared in showDataExitForm.js file
 }
 
 function setFormContentEditForm(e) 
