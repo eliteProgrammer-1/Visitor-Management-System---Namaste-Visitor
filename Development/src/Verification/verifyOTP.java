@@ -29,12 +29,14 @@ public class verifyOTP extends HttpServlet
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{	
+		HttpSession session = req.getSession();
 		this.OTP = req.getParameter("OTP");
 		try {
 			if(verify() == true)
 			{	
 				MakeEntry.makeEntry(req);
-				resp.sendRedirect(req.getContextPath() + "/JSP_Files/entryMade.jsp");
+				session.setAttribute("entryMadeModal", true); // for showing modal
+				resp.sendRedirect(req.getContextPath() + "/JSP_Files/entryForm.jsp");
 			}
 			else
 			{

@@ -139,7 +139,7 @@
                         <option value="activeEntries">Active Entries</option>
                     </select>
                 </div>
-                <div class="tableBox">
+                <div class="tableBox" id="tableBoxOfShowEntries">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -246,6 +246,7 @@
         <script src="../JavaScript/showDataExitForm.js"></script>
         <script src="../JavaScript/showDataSorting.js"></script>
         <script src="../JavaScript/showDataEditForm.js"></script>
+        <script src="../JavaScript/showDataEmptyTable.js"></script>
         
         <%if(session.getAttribute("editEntryModal") != null)
         {	

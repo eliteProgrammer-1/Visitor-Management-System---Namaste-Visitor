@@ -11,7 +11,10 @@
 %>
 
 
-<%if(session.getAttribute("visitorData") != null)
+
+<%	
+	session.removeAttribute("entryMadeModal"); // when entry created successfully ---> attribute verify.java
+	if(session.getAttribute("visitorData") != null)
 	{
 		session.removeAttribute("visitorData"); // if user redirects itself from otp page to options page
 	}

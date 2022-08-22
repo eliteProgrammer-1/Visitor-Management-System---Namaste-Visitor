@@ -40,7 +40,11 @@ public class SearchFunc extends HttpServlet
 			query = "select * from entries where visiting_ID = " + "'" + inpWord + "' order by entry_time desc;";
 		}
 		else if(searchType.equals("name") == true)
-		{			
+		{	
+			if(inpWord == "") // when name field is empty at form then it gives all entries because ''% means all the names in pattern matching
+			{
+				inpWord = "   ";
+			}
 			query = "select * from " + "(select *,  " + "CONCAT(first_name , ' ' , last_name)" + " as full_name from entries) tb where full_name like " + "'" + inpWord + "%' order by entry_time desc;";
 		}
 		else if(searchType.equals("mobNum") == true)

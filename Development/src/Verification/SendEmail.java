@@ -29,6 +29,26 @@ import security.MakeEntry; // self made
 public class SendEmail extends HttpServlet 
 {	
 	
+	private static boolean validInputsOrNot(String mobNum, String aadharNum, HttpServletRequest req, HttpServletResponse resp)
+	{
+		if(mobNum.length() != 10 || mobNum.matches("[0-9]+") == false || aadharNum.length() != 11 || aadharNum.matches("[0-9]+") == false)
+		{	
+			HttpSession session = req.getSession();
+			session.setAttribute("errorMessage", true);
+			
+			try 
+			{
+				resp.sendRedirect(req.getContextPath() + "/JSP_Files/newJoineeForm.jsp");
+				return false;
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+	
 	private static void sendEmail(String sub, String mssg, String to, String from) 
 	{
         String password = "xidripgdfxbfbuap";     
@@ -75,6 +95,12 @@ public class SendEmail extends HttpServlet
 		String mobNum = req.getParameter("mobNum");
 		String aadharNum = req.getParameter("aadharNum");
 		
+		if(validInputsOrNot(mobNum, aadharNum, req, resp) == false) // redirect if not valid inputs
+		{	
+			// sendEmail throws execption when email attribute is empty string
+			return;
+		}
+		
 		try 
 		{
 			while(MakeEntry.is_visitingID_unique(visitingID) == false)
@@ -94,6 +120,8 @@ public class SendEmail extends HttpServlet
 		String query = "insert into entries (visiting_ID, first_name, last_name, mob_num, aadhar_num, purpose, entry_time, exit_time) values (" + "'" + visitingID + "', " + "'" + firstName + "', " + "'" + lastName + "' ," + "'" + mobNum + "', " + "'" + aadharNum + "', " + "'Joinee', " + "null, null);";		
 		ConnectionDB.executeQuery(query);
 		
-		resp.sendRedirect(req.getContextPath() + "/JSP_Files/emailSent.jsp");
+		HttpSession session = req.getSession();
+		session.setAttribute("sucessModal", true);
+		resp.sendRedirect(req.getContextPath() + "/JSP_Files/newJoineeForm.jsp");
 	}
 }

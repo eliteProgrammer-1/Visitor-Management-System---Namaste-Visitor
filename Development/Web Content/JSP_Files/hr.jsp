@@ -14,6 +14,12 @@
 %>
 
 
+<%
+	session.removeAttribute("sucessModal");
+	session.removeAttribute("errorMessage"); 
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
