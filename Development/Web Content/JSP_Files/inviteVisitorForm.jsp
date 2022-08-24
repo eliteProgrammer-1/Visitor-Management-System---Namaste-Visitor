@@ -57,6 +57,16 @@
 			}
 		%>
 		
+		
+		<% 
+			if (LocalConstants.isEmployee == true) 
+    		{ 
+    	%>
+          	<jsp:include page="../HTML/logoutNavEmp.html" flush="true"/>
+		<% 
+			}
+		%>
+		
         <div class="containerr">
         	 <div class="titleDiv">
                 <h1>Invite Visitor</h1>

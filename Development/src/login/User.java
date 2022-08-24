@@ -42,6 +42,10 @@ public class User extends HttpServlet
 		{
 			resp.sendRedirect(req.getContextPath() + "/JSP_Files/hr.jsp");
 		}
+		else if(LocalConstants.isEmployee == true)
+		{
+			resp.sendRedirect(req.getContextPath() + "/JSP_Files/inviteVisitorForm.jsp");
+		}
     }
     
     

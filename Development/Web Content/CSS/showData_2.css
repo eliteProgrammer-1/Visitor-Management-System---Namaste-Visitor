@@ -28,7 +28,7 @@
 .tableBox {
 	overflow-y: scroll;
 	margin-top: 2rem;
-	height: 76%;
+	height: 74%;
 }
 
 
@@ -42,6 +42,7 @@
     display: flex;
     justify-content:space-between;
     align-items : center;
+    border-radius: 0px 0px 8px 8px;
 }
 
 #resetForm {
