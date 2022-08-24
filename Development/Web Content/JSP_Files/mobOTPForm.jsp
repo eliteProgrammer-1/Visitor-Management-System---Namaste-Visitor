@@ -66,10 +66,18 @@
 	<%	
 		boolean hittingFirstTime = true;
 		if(session.getAttribute("visitorData") == null) // first time hitting page
-		{
-			int apiStatusCode = SendOTPOnMobile.sendOTP(mobNum, mssg);
-			if(apiStatusCode != 200)
-			{	
+		{	
+			try
+			{
+				int apiStatusCode = SendOTPOnMobile.sendOTP(mobNum, mssg);
+				if(apiStatusCode != 200)
+				{	
+					session.setAttribute("otpError", true);
+					response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
+				}
+			}
+			catch(Exception e)
+			{
 				session.setAttribute("otpError", true);
 				response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
 			}

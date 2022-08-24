@@ -9,6 +9,7 @@
     if(session.getAttribute("loggedIn") == null || LocalConstants.isSecurityPersonnel == false)
     {
         response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
+        return;
     }
 %>
 
