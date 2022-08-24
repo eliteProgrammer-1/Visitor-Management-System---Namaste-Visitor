@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 
 <%@ page import="java.sql.*" %>
+<%@ page import="login.LocalConstants" %>
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Pragma", "no-cache");
-    if(session.getAttribute("loggedIn") == null)
+    if(session.getAttribute("loggedIn") == null || LocalConstants.isSecurityPersonnel == false)
     {
         response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
     }
@@ -66,17 +67,28 @@
         <div id="formBox">
             <div id="editExitFormTitle">
                 <h2></h2>
+                
             </div>
             <form action="/Development/ExitTime" method="post" id="exitTimeForm">
+            	<div style="width: 100%">
+            		<button type="button" class="close" aria-label="Close" style="color: black; margin-right: 8px;">
+  					<span aria-hidden="true" style="font-size: 2.6rem;">&times;</span>
+					</button>
+				</div>
+				
                 <input name="visitingID" style="font-family: 'Montserrat', sans-serif; font-size:2rem; margin-bottom: 6rem; text-indent: 2.5rem; border: none;" class="inpt">
                 <div id="form-inside">
                     <div id="left-div">
+                    	<label for="firstNameExitForm" class="lable">First Name</label>
                         <input type="text" placeholder="First Name" id="firstNameExitForm" class="inpt">
+                        <label for="mobNumExitForm" class="lable">Mobile Number</label>
                         <input type="text" placeholder="Mobile Number" id="mobNumExitForm" class="inpt">
                     </div>
 
                     <div id="right-div">
+                    	<label for="lastNameExitForm" class="lable">Last Name</label>
                         <input type="text" placeholder="Last Name" id="lastNameExitForm" class="inpt">
+                        <label for="aadharNumExitForm" class="lable">Aadhar Number</label>
                         <input type="text" placeholder="Aadhar Card Number" id="aadharNumExitForm" class="inpt">
                     </div>
                 </div>
@@ -84,19 +96,30 @@
             </form>
 
             <form action="/Development/EditEntry" method="post" id="editForm">
+            	<div style="width: 100%">
+            		<button type="button" class="close" aria-label="Close" style="color: black; margin-right: 8px;">
+  					<span aria-hidden="true" style="font-size: 2.6rem;">&times;</span>
+					</button>
+				</div>
+			
             <input name="visitingID" style="font-family: 'Montserrat', sans-serif; font-size:2rem; margin-bottom: 6rem; text-indent: 2.5rem; border: none;" class="inpt">
                 <div id="form-inside">
                     <div id="left-div">
+                        <label for="editFormFirstName" class="lable">First Name</label>
                         <input type="text" placeholder="First Name" name="firstName" class="inpt" id="editFormFirstName">
+                        <label for="editFormAadharNum" class="lable">Aadhar Number</label>
                         <input type="text" placeholder="AadharNum" name="aadharNum" class="inpt" id="editFormAadharNum">
                     </div>
 
                     <div id="right-div">
+                        <label for="editFormLastName" class="lable">Last Name</label>
                         <input type="text" placeholder="Last Name" name="lastName" class="inpt" id="editFormLastName">
+                        <label for="editFormPurpose" class="lable">Purpose</label>
                         <input type="text" placeholder="Purpose" name="purpose" class="inpt" id="editFormPurpose">
                     </div>
                 </div>
                 <button type="submit" class="btn">Save</button>
+                
             </form>
         </div>
 
@@ -116,7 +139,7 @@
                             <option value="mobNum">Mobile Number</option>
                             <option value="aadharNum">Aadhar Card Number</option>
                         </select>
-                        <input type="text" name="inpWord" class="inp" id="inpWord">
+                        <input type="text" name="inpWord" class="inp" id="inpWord" required>
                     </div>
 
                     <div id="searchViaOtherAttributesBtn">
@@ -125,8 +148,8 @@
                 </form>
 
                 <form action="/Development/SearchFuncViaDate" id="searchViaDate" method="post">
-                    <input type="date" name="startDate" id="" class="inp" style="margin-right: 12px">
-                    <input type="date" name="endData" id="" class="inp" style="margin-right: 12px">
+                    <input type="date" name="startDate" id="" class="inp" style="margin-right: 12px" required>
+                    <input type="date" name="endData" id="" class="inp" style="margin-right: 12px" required>
                     <button type="submit" class="btn-small">Search</button>
                 </form>
             </div>
@@ -247,6 +270,7 @@
         <script src="../JavaScript/showDataSorting.js"></script>
         <script src="../JavaScript/showDataEditForm.js"></script>
         <script src="../JavaScript/showDataEmptyTable.js"></script>
+        <script src="../JavaScript/editExitFormCloseBtn.js"></script>
         
         <%if(session.getAttribute("editEntryModal") != null)
         {	

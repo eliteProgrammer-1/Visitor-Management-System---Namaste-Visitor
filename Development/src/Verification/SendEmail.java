@@ -31,10 +31,55 @@ public class SendEmail extends HttpServlet
 	
 	private static boolean validInputsOrNot(String mobNum, String aadharNum, HttpServletRequest req, HttpServletResponse resp)
 	{
-		if(mobNum.length() != 10 || mobNum.matches("[0-9]+") == false || aadharNum.length() != 11 || aadharNum.matches("[0-9]+") == false)
+		if(mobNum.length() != 10)
 		{	
 			HttpSession session = req.getSession();
-			session.setAttribute("errorMessage", true);
+			session.setAttribute("errorMessage", "Mobile number must be of 10 digits.");
+			
+			try 
+			{
+				resp.sendRedirect(req.getContextPath() + "/JSP_Files/newJoineeForm.jsp");
+				return false;
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		if(mobNum.matches("[0-9]+") == false)
+		{	
+			HttpSession session = req.getSession();
+			session.setAttribute("errorMessage", "Mobile number must only contain numbers.");
+			
+			try 
+			{
+				resp.sendRedirect(req.getContextPath() + "/JSP_Files/newJoineeForm.jsp");
+				return false;
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		if(aadharNum.length() != 11)
+		{	
+			HttpSession session = req.getSession();
+			session.setAttribute("errorMessage", "Aadhar card number must be of 10 digits.");
+			
+			try 
+			{
+				resp.sendRedirect(req.getContextPath() + "/JSP_Files/newJoineeForm.jsp");
+				return false;
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		if(aadharNum.matches("[0-9]+") == false)
+		{	
+			HttpSession session = req.getSession();
+			session.setAttribute("errorMessage", "Aadhar card number must only contain numbers.");
 			
 			try 
 			{
@@ -49,7 +94,7 @@ public class SendEmail extends HttpServlet
 		return true;
 	}
 	
-	private static void sendEmail(String sub, String mssg, String to, String from) 
+	protected static void sendEmail(String sub, String mssg, String to, String from) 
 	{
         String password = "xidripgdfxbfbuap";     
         Properties props = new Properties();

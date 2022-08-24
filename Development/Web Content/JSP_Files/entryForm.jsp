@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 
+<%@ page import="login.LocalConstants" %> 
 
 <%response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");%> <%-- Tells browser to not store this page on cache --%>
 <%response.setHeader("Pragma", "no-cache");%> <%-- Tells browser to not store this page on cache, for older versions of http --%>
 
-<%if(session.getAttribute("loggedIn") == null)
+<%if(session.getAttribute("loggedIn") == null || LocalConstants.isSecurityPersonnel == false)
 	{
 		response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
 	}
@@ -33,7 +34,7 @@
     	<div class="modal fade" id="entryCreatedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	   <div class="modal-dialog">
 	    <div class="modal-content">
-	      <div class="modal-body">
+	      <div class="modal-body" id="modalContentDiv">
 	        Entry Created Successfully!
 	      </div>
 	      <div class="modal-footer">
@@ -53,7 +54,7 @@
             	
             <%  if(session.getAttribute("errorMessage") != null) // this attributed is created in otpForm.jsp
 				{
-					out.print("<div class='alert alert-danger alert-dismissible fade show' role='alert' style='width: 100%;'><strong>Invalid Input Values! </strong>You should check in on some of those fields below.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+					out.print("<div class='alert alert-danger alert-dismissible fade show' role='alert' style='width: 100%;'><strong>Invalid Input Values! </strong>" + session.getAttribute("errorMessage") + "You should check in on some of those fields below.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 					
 					// user entered wrong entries and submitted then to show mssg
 					session.removeAttribute("errorMessage"); 
@@ -63,17 +64,17 @@
                 <form action="/Development/JSP_Files/mobOTPForm.jsp" method="post">
                     <div id="form-inside">
                         <div id="left-div">
-                            <input type="text" placeholder="First Name" name="firstName" class="inp">
-                            <input type="text" placeholder="Mobile Number" name="mobNum" class="inp" id="mobNum">
+                            <input type="text" placeholder="First Name" name="firstName" class="inp" required>
+                            <input type="text" placeholder="Mobile Number" name="mobNum" class="inp" id="mobNum" minlength="10" maxlength="10" required>
                         </div>
 
                         <div id="right-div">
-                            <input type="text" placeholder="Last Name" name="lastName" class="inp">
-                            <input type="text" placeholder="Aadhar Card Number" name="aadharNum" class="inp" id="aadharNum">
+                            <input type="text" placeholder="Last Name" name="lastName" class="inp" required>
+                            <input type="text" placeholder="Aadhar Card Number" name="aadharNum" class="inp" id="aadharNum" minlength="11" maxlength="11" required>
                         </div>
                     </div>
                     <div id="bottom-div">
-                        <input type="text" placeholder="Purpose" name="purpose" class="inp center-inp">
+                        <input type="text" placeholder="Purpose" name="purpose" class="inp center-inp" required>
                     </div>
                     <button type="submit" class="btn">Create Entry</button>
                 </form>
@@ -85,12 +86,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <%
-		if(session.getAttribute("sucessModal") != null)
+		if(session.getAttribute("entryMadeModal") != null)
         {	
         	// for showing modal of entry created successfully
         	out.print("<script src='../JavaScript/securityEntryCreatedModal.js'></script>");
         	session.removeAttribute("entryMadeModal"); // attribute is verify.java
         }
-%>    
+%>  
+
+<%
+		if(session.getAttribute("otpError") != null)
+        {	
+        	// for showing modal of otp error
+        	out.print("<script src='../JavaScript/securityOTPNotSent.js'></script>");
+        	session.removeAttribute("otpError"); // mobOTPForm.jsp
+        }
+%>      
 </html>
     

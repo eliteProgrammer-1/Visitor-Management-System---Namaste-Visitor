@@ -32,6 +32,36 @@ function showSearchForm()
     }
 }
 
+function setMaxMinLen() 
+{
+    for(let i = 0; i < searchOption.length; i++)
+    {   
+        searchOption[i].addEventListener("change", ()=>
+        {   
+            if(searchOption[i].value == "visitingID")
+            {
+                searchInp.removeAttribute("maxlength");
+                searchInp.removeAttribute("minlength");
+            }
+            else if(searchOption[i].value == "name")
+            {
+                searchInp.removeAttribute("maxlength");
+                searchInp.removeAttribute("minlength");
+            }
+            else if(searchOption[i].value == "mobNum")
+            {
+                searchInp.setAttribute("maxlength", "10");
+                searchInp.setAttribute("minlength", "10");
+            }
+            else if(searchOption[i].value == "aadharNum")
+            {
+                searchInp.setAttribute("maxlength", "11");
+                searchInp.setAttribute("minlength", "11");
+            }
+        });
+    }
+}
+
 function setPlaceHolder() 
 {   
     searchInp.placeholder = "Enter Visiting ID";
@@ -62,3 +92,4 @@ function setPlaceHolder()
 
 setPlaceHolder();
 showSearchForm();
+setMaxMinLen();

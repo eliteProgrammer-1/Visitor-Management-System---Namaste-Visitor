@@ -6,7 +6,7 @@
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Pragma", "no-cache");
-    if(session.getAttribute("loggedIn") == null || LocalConstants.isHR == false)
+    if(session.getAttribute("loggedIn") == null)
     {
         response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
     }
@@ -38,32 +38,50 @@
 	  </div>
 	</div>
     
-        <jsp:include page="../HTML/logoutNavHr.html"/>
+    	
+       <% 
+    		if (LocalConstants.isHR == true) 
+    		{ 
+    	%>
+          	<jsp:include page="../HTML/logoutNavHr.html" flush="true"/>
+		<% 
+			}
+		%>
+		
+		<% 
+			if (LocalConstants.isSecurityPersonnel == true) 
+    		{ 
+    	%>
+          	<jsp:include page="../HTML/logoutNavSecurity.html" flush="true"/>
+		<% 
+			}
+		%>
+		
         <div class="containerr">
         	 <div class="titleDiv">
-                <h1>Joinee Invitation Form</h1>
+                <h1>Invite Visitor</h1>
             </div>
             <div id="center-div">
             	
             	<%  if(session.getAttribute("errorMessage") != null) // this attributed is created in otpForm.jsp
 				{
-					out.print("<div class='alert alert-danger alert-dismissible fade show' role='alert' style='width: 100%;'><strong>Invalid Input Values! </strong>" + session.getAttribute("errorMessage") + "You should check in on some of those fields below.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+					out.print("<div class='alert alert-danger alert-dismissible fade show' role='alert' style='width: 100%;'><strong>Invalid Input Values! </strong>" + session.getAttribute("errorMessage") + "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 					
 					// user entered wrong entries and submitted then to show mssg
 					session.removeAttribute("errorMessage"); 
 				}
 			%> 
             
-                <form action="/Development/SendEmail" method="post">
+                <form action="/Development/SendEmailToVisitor" method="post">
                     <div id="form-inside">
                         <div id="left-div">
                             <input type="text" placeholder="First Name" name="firstName" class="inp" required>
-                            <input type="text" placeholder="Mobile Number" name="mobNum" class="inp" required minlength = "10" maxlength="10">
+                            <input type="text" placeholder="Mobile Number" name="mobNum" class="inp" required maxlength="10" minlength="10">
                         </div>
 
                         <div id="right-div">
-                            <input type="text" placeholder="Last Name" name="lastName" class="inp">
-                            <input type="text" placeholder="Aadhar Card Number" name="aadharNum" class="inp" required minlength = "11" maxlength="11">
+                            <input type="text" placeholder="Last Name" name="lastName" class="inp" required>
+                            <input type="text" placeholder="Aadhar Card Number" name="aadharNum" class="inp" required maxlength="11" minlength="11">
                         </div>
                     </div>
                     <div id="bottom-div">

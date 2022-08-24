@@ -46,8 +46,11 @@ public class SendOTPOnMobile
 			OTP = generateOTP();
 		}
 		mssg += OTP;
-
-		String apiKey = "8BxRPsXkcrazntuSIE9piQHYO2bUhT6lFgJV1D5CL7mGN0foAw0JbokNMWeL2TqFYtzuGlARH3XvndxE";
+		
+		
+		// 8BxRPsXkcrazntuSIE9piQHYO2bUhT6lFgJV1D5CL7mGN0foAw0JbokNMWeL2TqFYtzuGlARH3XvndxE
+		// VihNFREJepgHo5MvSUCqWy0798GKsIAdzYBkDlarjZcPT1Q2L32b4BSmZD5FdVUIXK7cnOfvh1sHeEYw
+		String apiKey = "VihNFREJepgHo5MvSUCqWy0798GKsIAdzYBkDlarjZcPT1Q2L32b4BSmZD5FdVUIXK7cnOfvh1sHeEYw";
 		String url = "https://www.fast2sms.com/dev/bulkV2?authorization=" + apiKey + "&message=" + mssg + "&language=english&route=q&numbers=" + mobNum;
 
 		try 
@@ -59,6 +62,7 @@ public class SendOTPOnMobile
 			connection.setRequestProperty("cache-control", "no-cache");
 
 			int respCode = connection.getResponseCode();
+			System.out.print(respCode);
 			if(respCode == 200)
 			{
 				ConnectionDB.executeQuery("insert into otp values(" + OTP + ", " + mobNum + ", null);");

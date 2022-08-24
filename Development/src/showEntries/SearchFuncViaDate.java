@@ -46,6 +46,7 @@ public class SearchFuncViaDate extends HttpServlet
 		String startDate = req.getParameter("startDate");
 		String endDate = req.getParameter("endData");
 		
+		
 		ResultSet resultset = getEntries(startDate, endDate);
 		
 		HttpSession session = req.getSession();

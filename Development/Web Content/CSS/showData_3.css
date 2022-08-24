@@ -21,8 +21,8 @@
 }
 
 #editExitFormTitle {
-    width: 48%;
-    height: 12%;
+    width: 51%;
+    height: 12.6%;
     background-color:  rgb(64, 60, 60);
     box-shadow: 2px 2px 12px black;
     border-radius: 12px 12px 0px 0px;
@@ -33,30 +33,35 @@
 }
 
 #editForm, #exitTimeForm{
-    height: 55%;
-    width: 48%;
+    height: 72%;
+    width: 51%;
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items:center;
     box-shadow: 1px 1px 15px 0px;
     border-radius: 0px 0px 8px 8px;
 }
 
 #form-inside {
-    width: 100%;
+    width: 92%;
     /* height: 16%; */
     display: flex;
     justify-content: space-around;
     align-items:center;
 }
 
+.close:active {
+	border: none;
+	outline: none;
+}
+
 #left-div {
     display: flex;
     flex-direction:column;
     justify-content:space-between;
-    align-items: center;
+    align-items: flex-start;
     width: 50%;
     height: 100%;
 }
@@ -65,25 +70,37 @@
     display: flex;
     flex-direction: column;
     justify-content:space-between;
-    align-items: center;
-    width: 50%;
+    align-items: flex-start;
+    width: 30%;
     height: 100%;
+}
+
+.lable {
+	color: rgb(234, 167, 42);;
+	font-size: 19px;
 }
 
 .inpt {
     height: 2.2rem;
-    width: 15rem;
+    width: 12rem;
     box-sizing: border-box;
     margin-bottom: 1.6rem;
     outline: none;
     border: none;
     border-bottom: 1px solid black;
     font-size: 16px;
-    padding: 1.2rem;
 }
 
 .inpt:focus {
     border-bottom: 1px solid rgb(246, 127, 83);
+}
+
+
+#editExitBtnDiv {
+	width: 100%;
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .btn {

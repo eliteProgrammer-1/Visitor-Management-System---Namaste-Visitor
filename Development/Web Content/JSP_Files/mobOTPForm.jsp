@@ -3,12 +3,13 @@
     
     <%@ page import="Verification.*" %>
     <%@ page import="security.*" %>
+    <%@ page import="login.LocalConstants" %> 
 	   
     <%response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");%> <%-- Tells browser to not store this page on cache --%>
 	<%response.setHeader("Pragma", "no-cache");%> <%-- Tells browser to not store this page on cache, for older versions of http --%>
 
 	
-	<%if(session.getAttribute("loggedIn") == null)
+	<%if(session.getAttribute("loggedIn") == null || LocalConstants.isSecurityPersonnel == false)
 	{
 		response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
 	}
@@ -26,12 +27,39 @@
     
     <%	
     	// security checks of input values
-		if(mobNum.length() != 10 || mobNum.matches("[0-9]+") == false || aadharNum.length() != 11 || aadharNum.matches("[0-9]+") == false)
-		{	
-			session.setAttribute("errorMessage", true);
-			response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
-			return; // apiStatusCode line throws exception when code jumps into this if block. So, I returned servlet method here
-		}
+    	if(session.getAttribute("visitorData") == null) // if hiiting page first time
+    	{	
+    		if(mobNum == null || aadharNum == null)
+    		{
+    			session.setAttribute("errorMessage", true);
+    			response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
+    			return; // apiStatusCode line throws exception when code jumps into this if block. So, I returned servlet method here
+    		}
+    		if(mobNum.length() != 10)
+    		{	
+    			session.setAttribute("errorMessage", "Mobile number must be of 10 digits.");
+    			response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
+    			return; // apiStatusCode line throws exception when code jumps into this if block. So, I returned servlet method here
+    		}
+    		if(mobNum.matches("[0-9]+") == false)
+    		{	
+    			session.setAttribute("errorMessage", "Mobile number must only contain numbers.");
+    			response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
+    			return; // apiStatusCode line throws exception when code jumps into this if block. So, I returned servlet method here
+    		}
+    		if(aadharNum.length() != 11)
+    		{	
+    			session.setAttribute("errorMessage", "Aadhar card number must be of 10 digits.");
+    			response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
+    			return; // apiStatusCode line throws exception when code jumps into this if block. So, I returned servlet method here
+    		}
+    		if(aadharNum.matches("[0-9]+") == false)
+    		{	
+    			session.setAttribute("errorMessage", "Aadhar card number must only contain numbers.");
+    			response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
+    			return; // apiStatusCode line throws exception when code jumps into this if block. So, I returned servlet method here
+    		}
+    	}
     %>
    
     
@@ -39,11 +67,12 @@
 		boolean hittingFirstTime = true;
 		if(session.getAttribute("visitorData") == null) // first time hitting page
 		{
-			//int apiStatusCode = SendOTPOnMobile.sendOTP(mobNum, mssg);
-			//if(apiStatusCode != 200)
-			//{	
-				//response.sendRedirect(request.getContextPath() + "/JSP_Files/securityErrorPage.jsp");
-			//}
+			int apiStatusCode = SendOTPOnMobile.sendOTP(mobNum, mssg);
+			if(apiStatusCode != 200)
+			{	
+				session.setAttribute("otpError", true);
+				response.sendRedirect(request.getContextPath() + "/JSP_Files/entryForm.jsp");
+			}
 		}	
 	%>
 

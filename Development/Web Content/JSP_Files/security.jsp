@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page import="login.LocalConstants" %>    
 
 <%response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");%> <%-- Tells browser to not store this page on cache --%>
 <%response.setHeader("Pragma", "no-cache");%> <%-- Tells browser to not store this page on cache, for older versions of http --%>
 
-<%if(session.getAttribute("loggedIn") == null)
+<%if(session.getAttribute("loggedIn") == null || LocalConstants.isSecurityPersonnel == false)
 	{
 		response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
 	}
@@ -14,6 +16,7 @@
 
 <%	
 	session.removeAttribute("entryMadeModal"); // when entry created successfully ---> attribute verify.java
+	session.removeAttribute("otpError"); // mobOTPForm.jsp
 	if(session.getAttribute("visitorData") != null)
 	{
 		session.removeAttribute("visitorData"); // if user redirects itself from otp page to options page

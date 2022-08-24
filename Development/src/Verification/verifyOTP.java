@@ -7,7 +7,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import database.*; // self made package
-import security.MakeEntry;
+import security.MakeEntry; // self made
 
 @WebServlet("/verifyOTP")
 public class verifyOTP extends HttpServlet

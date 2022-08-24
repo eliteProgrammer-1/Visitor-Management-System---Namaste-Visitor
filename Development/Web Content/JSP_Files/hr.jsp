@@ -3,11 +3,14 @@
 
 <!-- This page is similar to security.jsp.....some of the things are taken from security.jsp like CSS files and HTML -->
 
+<%@ page import="login.LocalConstants" %>
+
+
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Pragma", "no-cache");
-    if(session.getAttribute("loggedIn") == null)
+    if(session.getAttribute("loggedIn") == null || LocalConstants.isHR == false)
     {
         response.sendRedirect(request.getContextPath() + "/HTML/loginPage.html");
     }

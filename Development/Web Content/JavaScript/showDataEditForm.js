@@ -18,7 +18,7 @@ function updateCSSEditForm()
     formBox.style.display = "flex";
     editForm.style.display = "flex";
     container.style.display = "none";
-    formTitle.innerHTML = "<h2>Confirm Changes</h2>"; // variable declared in showDataExitForm.js file
+    formTitle.innerHTML = `<h3>Confirm Changes</h3>`; // variable declared in showDataExitForm.js file
 }
 
 function setFormContentEditForm(e) 
@@ -31,8 +31,8 @@ function setFormContentEditForm(e)
     const row = ((e.target).parentElement).parentElement;
     const rowChildren = row.children;
 
-    editForm.children[0].value = rowChildren[1].innerText; // setting visiting id in form heading
-    editForm.children[0].setAttribute("readonly", "");
+    editForm.children[1].value = rowChildren[1].innerText; // setting visiting id in form heading
+    editForm.children[1].setAttribute("readonly", "");
 
     firstName.value = rowChildren[2].innerText;
     lastName.value = rowChildren[3].innerText;

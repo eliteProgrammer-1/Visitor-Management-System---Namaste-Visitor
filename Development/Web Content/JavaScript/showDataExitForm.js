@@ -32,7 +32,7 @@ function setFormContent(e)
     const row = ((e.target).parentElement).parentElement;
     const rowChildren = row.children;
 
-    exitTimeForm.children[0].value = rowChildren[1].innerText; // setting visiting id in form heading
+    exitTimeForm.children[1].value = rowChildren[1].innerText; // setting visiting id in form heading
     
 
     firstName.value = rowChildren[2].innerText;
@@ -41,7 +41,7 @@ function setFormContent(e)
     aadharNum.value = rowChildren[5].innerText;
 	
 	 // value is not changable
-	exitTimeForm.children[0].setAttribute("readonly", "");
+	exitTimeForm.children[1].setAttribute("readonly", "");
     firstName.setAttribute("readonly", "");
     lastName.setAttribute("readonly", "");
     mobNum.setAttribute("readonly", "");

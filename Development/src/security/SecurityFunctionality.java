@@ -21,6 +21,7 @@ public class SecurityFunctionality extends HttpServlet
     	HttpSession session = req.getSession();
     	session.removeAttribute("exitEntryModal");
     	session.removeAttribute("editEntryModal");
+    	session.removeAttribute("sucessModal"); // email sent when invite visitor or joinee
     	
     	if(session.getAttribute("loggedIn") == null)
     	{
@@ -60,7 +61,7 @@ public class SecurityFunctionality extends HttpServlet
         }
         else if(this.invite == true)
         {
-
+        	resp.sendRedirect(req.getContextPath() + "/JSP_Files/inviteVisitorForm.jsp");
         }
     }
 
