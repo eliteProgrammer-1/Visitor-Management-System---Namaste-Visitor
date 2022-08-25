@@ -16,9 +16,9 @@ public class verifyOTP extends HttpServlet
 	
 	private boolean verify() throws SQLException
 	{	
-		String query = "select * from otp where otp = " + this.OTP + ";";
+		String query = "select * from otp where otp = " + "'" + this.OTP + "'" + ";";
 		ResultSet resultset = ConnectionDB.getResult(query, null);
-		if(resultset.next() == true)
+		if(resultset!= null && resultset.next() == true)
 		{	
 			query = "delete from otp where otp = " + this.OTP + ";";
 			ConnectionDB.executeQuery(query);
@@ -44,8 +44,10 @@ public class verifyOTP extends HttpServlet
 			}
 		} 
 		catch (SQLException e) 
-		{
-			e.printStackTrace();
+		{	
+			session.setAttribute("otpError", true);
+			resp.sendRedirect(req.getContextPath() + "/JSP_Files/mobileOTPForm.jsp");
+			return;
 		}
 	}
 }

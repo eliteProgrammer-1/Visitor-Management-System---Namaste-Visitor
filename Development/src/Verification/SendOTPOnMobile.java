@@ -12,7 +12,7 @@ public class SendOTPOnMobile
 {
 	public static String generateOTP()
 	{
-		String characters = "0123456789";
+		String characters = "123456789";
 		Random random = new Random();
 		char otp[] = new char[5];
 

@@ -39,6 +39,8 @@
                 <img src="../Images/logo.png" alt="" height="65%">
                 <span id="logo">In Time Tec</span>
                 <ul>
+                	<li><a href="/Development/JSP_Files/newJoineeForm.jsp">Joinee</a></li>
+            		<li><a href="/Development/JSP_Files/inviteVisitorForm.jsp">Invite</a></li>
                     <li><a href="/Development/Logout">Logout</a></li>
                 </ul>
             </div>
